@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const WeatherForecastApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class WeatherForecastApp extends StatelessWidget {
+  const WeatherForecastApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,21 +14,21 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const WeatherForecast(title: 'Forecast'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class WeatherForecast extends StatefulWidget {
+  const WeatherForecast({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<WeatherForecast> createState() => _WeatherForecastState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _WeatherForecastState extends State<WeatherForecast> {
   int _counter = 0;
 
   void _incrementCounter() {
