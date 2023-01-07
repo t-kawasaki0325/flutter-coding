@@ -29,39 +29,71 @@ class WeatherForecast extends StatefulWidget {
 }
 
 class _WeatherForecastState extends State<WeatherForecast> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  void _action() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+        body: Center(
+            child: Column(
+      children: [
+        Spacer(),
+        Flexible(
+            child: FractionallySizedBox(
+          widthFactor: 0.5,
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            const AspectRatio(
+              aspectRatio: 1 / 1,
+              child: Placeholder(),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Text('** ℃',
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge
+                          ?.copyWith(color: Colors.blue)),
+                  Text('** ℃',
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge
+                          ?.copyWith(color: Colors.red)),
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+          ]),
+        )),
+        Flexible(
+            child: FractionallySizedBox(
+          widthFactor: 0.5,
+          child: Container(
+            margin: EdgeInsets.only(top: 80),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                    onPressed: _action,
+                    child: Text('Close',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(color: Colors.blue)),
+                  ),
+                  TextButton(
+                    onPressed: _action,
+                    child: Text('Reload',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(color: Colors.blue)),
+                  )
+                ]),
+          ),
+        ))
+      ],
+    )));
   }
 }
