@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_training/after_layout_mixin.dart';
+import 'package:flutter_training/error_dialog.dart';
 import 'package:flutter_training/large_button.dart';
 import 'package:flutter_training/main_widget.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
@@ -44,10 +45,20 @@ class _WeatherForecastState extends State<WeatherForecast>
 
   void _reload() {
     final yumemiWeather = YumemiWeather();
-    final weatherCondition = yumemiWeather.fetchSimpleWeather();
-    setState(() {
-      _weather = weatherCondition;
-    });
+    try {
+      final weatherCondition = yumemiWeather.fetchThrowsWeather('tokyo');
+      setState(() {
+        _weather = weatherCondition;
+      });
+    } catch (_) {
+      showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return ErrorDialog();
+        },
+      );
+    }
   }
 
   @override
