@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training/large_button.dart';
+import 'package:flutter_training/main_widget.dart';
 
 void main() {
   runApp(const WeatherForecastApp());
@@ -39,33 +41,7 @@ class _WeatherForecastState extends State<WeatherForecast> {
       children: [
         Spacer(),
         Flexible(
-            child: FractionallySizedBox(
-          widthFactor: 0.5,
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            const AspectRatio(
-              aspectRatio: 1 / 1,
-              child: Placeholder(),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Text('** ℃',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge
-                          ?.copyWith(color: Colors.blue)),
-                  Text('** ℃',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge
-                          ?.copyWith(color: Colors.red)),
-                ],
-              ),
-            ),
-          ]),
-        )),
+            child: FractionallySizedBox(widthFactor: 0.5, child: MainWidget())),
         Flexible(
             child: FractionallySizedBox(
           widthFactor: 0.5,
@@ -74,22 +50,8 @@ class _WeatherForecastState extends State<WeatherForecast> {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextButton(
-                    onPressed: _action,
-                    child: Text('Close',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                            ?.copyWith(color: Colors.blue)),
-                  ),
-                  TextButton(
-                    onPressed: _action,
-                    child: Text('Reload',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                            ?.copyWith(color: Colors.blue)),
-                  )
+                  LargeButton(label: 'Close', action: _action),
+                  LargeButton(label: 'Reload', action: _action)
                 ]),
           ),
         ))
