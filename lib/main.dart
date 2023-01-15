@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training/large_button.dart';
+import 'package:flutter_training/main_widget.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const WeatherForecastApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class WeatherForecastApp extends StatelessWidget {
+  const WeatherForecastApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,54 +16,46 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const WeatherForecast(title: 'Forecast'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class WeatherForecast extends StatefulWidget {
+  const WeatherForecast({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<WeatherForecast> createState() => _WeatherForecastState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class _WeatherForecastState extends State<WeatherForecast> {
+  void _action() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+        body: Center(
+            child: Column(
+      children: [
+        Spacer(),
+        Flexible(
+            child: FractionallySizedBox(widthFactor: 0.5, child: MainWidget())),
+        Flexible(
+            child: FractionallySizedBox(
+          widthFactor: 0.5,
+          child: Container(
+            margin: EdgeInsets.only(top: 80),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  LargeButton(label: 'Close', action: _action),
+                  LargeButton(label: 'Reload', action: _action)
+                ]),
+          ),
+        ))
+      ],
+    )));
   }
 }
