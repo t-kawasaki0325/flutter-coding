@@ -19,14 +19,14 @@ class MainWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Text(
-              '** ℃',
+              '${weather.maxTemperature} ℃',
               style: Theme.of(context)
                   .textTheme
                   .labelLarge
                   ?.copyWith(color: Colors.blue),
             ),
             Text(
-              '** ℃',
+              '${weather.minTemperature} ℃',
               style: Theme.of(context)
                   .textTheme
                   .labelLarge
