@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_training/green_screen.dart';
 import 'package:flutter_training/large_button.dart';
 import 'package:flutter_training/main_widget.dart';
@@ -36,7 +38,10 @@ class WeatherForecast extends StatefulWidget {
 class _WeatherForecastState extends State<WeatherForecast> {
   String _weather = 'sunny';
 
-  void _close() {}
+  void _close() {
+    Platform.isIOS ? exit(0) : SystemNavigator.pop();
+  }
+
   void _reload() {
     final yumemiWeather = YumemiWeather();
     final weatherCondition = yumemiWeather.fetchSimpleWeather();
