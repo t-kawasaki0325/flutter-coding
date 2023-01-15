@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_training/large_button.dart';
 import 'package:flutter_training/main_widget.dart';
+import 'package:yumemi_weather/yumemi_weather.dart';
 
 void main() {
   runApp(const WeatherForecastApp());
@@ -31,7 +32,16 @@ class WeatherForecast extends StatefulWidget {
 }
 
 class _WeatherForecastState extends State<WeatherForecast> {
-  void _action() {}
+  String _weather = 'sunny';
+
+  void _close() {}
+  void _reload() {
+    final yumemiWeather = YumemiWeather();
+    final weatherCondition = yumemiWeather.fetchSimpleWeather();
+    setState(() {
+      _weather = weatherCondition;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +51,21 @@ class _WeatherForecastState extends State<WeatherForecast> {
       children: [
         Spacer(),
         Flexible(
-            child: FractionallySizedBox(widthFactor: 0.5, child: MainWidget())),
+          child: FractionallySizedBox(
+            widthFactor: 0.5,
+            child: MainWidget(weather: _weather),
+          ),
+        ),
         Flexible(
             child: FractionallySizedBox(
           widthFactor: 0.5,
           child: Container(
-            margin: EdgeInsets.only(top: 80),
+            margin: const EdgeInsets.only(top: 80),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  LargeButton(label: 'Close', action: _action),
-                  LargeButton(label: 'Reload', action: _action)
+                  LargeButton(label: 'Close', action: _close),
+                  LargeButton(label: 'Reload', action: _reload)
                 ]),
           ),
         ))
