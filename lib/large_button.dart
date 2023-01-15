@@ -10,11 +10,13 @@ class LargeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: action,
-      child: Text(label,
-          style: Theme.of(context)
-              .textTheme
-              .labelLarge
-              ?.copyWith(color: Colors.blue)),
+      child: Text(
+        label,
+        style: Theme.of(context)
+            .textTheme
+            .labelLarge
+            ?.copyWith(color: Colors.blue),
+      ),
     );
   }
 }
