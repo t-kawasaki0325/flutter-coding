@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_training/after_layout_mixin.dart';
 import 'package:flutter_training/error_dialog.dart';
 import 'package:flutter_training/large_button.dart';
 import 'package:flutter_training/main_widget.dart';
+import 'package:flutter_training/weather.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
 
 void main() {
@@ -37,7 +39,7 @@ class WeatherForecast extends StatefulWidget {
 
 class _WeatherForecastState extends State<WeatherForecast>
     with AfterLayoutMixin {
-  String _weather = 'sunny';
+  Weather _weather = Weather('sunny', 0, 0, '');
 
   void _close() {
     Platform.isIOS ? exit(0) : SystemNavigator.pop();
@@ -45,10 +47,16 @@ class _WeatherForecastState extends State<WeatherForecast>
 
   void _reload() {
     final yumemiWeather = YumemiWeather();
+    const jsonString = '''
+      {
+          "area": "tokyo",
+          "date": "2020-04-01T12:00:00+09:00"
+      }''';
     try {
-      final weatherCondition = yumemiWeather.fetchThrowsWeather('tokyo');
+      final weatherJson = yumemiWeather.fetchWeather(jsonString);
+      final decoded = json.decode(weatherJson) as Map<String, dynamic>;
       setState(() {
-        _weather = weatherCondition;
+        _weather = Weather.fromJson(decoded);
       });
     } catch (_) {
       showDialog<void>(
