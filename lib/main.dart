@@ -1,8 +1,7 @@
-import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_training/green_screen.dart';
+import 'package:flutter_training/after_layout_mixin.dart';
 import 'package:flutter_training/large_button.dart';
 import 'package:flutter_training/main_widget.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
@@ -35,7 +34,8 @@ class WeatherForecast extends StatefulWidget {
   State<WeatherForecast> createState() => _WeatherForecastState();
 }
 
-class _WeatherForecastState extends State<WeatherForecast> {
+class _WeatherForecastState extends State<WeatherForecast>
+    with AfterLayoutMixin {
   String _weather = 'sunny';
 
   void _close() {
@@ -48,24 +48,6 @@ class _WeatherForecastState extends State<WeatherForecast> {
     setState(() {
       _weather = weatherCondition;
     });
-  }
-
-  @override
-  void initState() {
-    WidgetsBinding.instance.endOfFrame.then((_) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const GreenScreen();
-          },
-        ),
-      );
-
-      Timer(const Duration(milliseconds: 500), () => Navigator.pop(context));
-    });
-
-    super.initState();
   }
 
   @override
