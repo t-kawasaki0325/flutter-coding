@@ -39,7 +39,12 @@ class WeatherForecast extends StatefulWidget {
 
 class _WeatherForecastState extends State<WeatherForecast>
     with AfterLayoutMixin {
-  Weather _weather = Weather('sunny', 0, 0, '');
+  Weather _weather = const Weather(
+    weatherCondition: 'sunny',
+    maxTemperature: 0,
+    minTemperature: 0,
+    date: '',
+  );
 
   void _close() {
     Platform.isIOS ? exit(0) : SystemNavigator.pop();
