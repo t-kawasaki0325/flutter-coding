@@ -1,21 +1,20 @@
-import 'dart:ffi';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Weather {
-  final String weatherCondition;
-  final int maxTemperature;
-  final int minTemperature;
-  final String date;
+part 'weather.freezed.dart';
+part 'weather.g.dart';
 
-  Weather(
-    this.weatherCondition,
-    this.maxTemperature,
-    this.minTemperature,
-    this.date,
-  );
+@freezed
+class Weather with _$Weather {
+  @JsonSerializable(
+    fieldRename: FieldRename.snake,
+  )
+  const factory Weather({
+    required String weatherCondition,
+    required int maxTemperature,
+    required int minTemperature,
+    required String date,
+  }) = _Weather;
 
-  Weather.fromJson(Map<String, dynamic> json)
-      : weatherCondition = json['weather_condition']! as String,
-        maxTemperature = json['max_temperature']! as int,
-        minTemperature = json['min_temperature']! as int,
-        date = json['date']! as String;
+  factory Weather.fromJson(Map<String, dynamic> json) =>
+      _$WeatherFromJson(json);
 }
