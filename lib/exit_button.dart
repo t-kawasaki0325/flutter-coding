@@ -1,17 +1,20 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class LargeButton extends StatelessWidget {
-  final String label;
-  final VoidCallback action;
-  const LargeButton({Key? key, required this.label, required this.action})
-      : super(key: key);
+class ExitButton extends StatelessWidget {
+  const ExitButton({Key? key}) : super(key: key);
+
+  void close() {
+    Platform.isIOS ? exit(0) : SystemNavigator.pop();
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: action,
+      onPressed: close,
       child: Text(
-        label,
+        'Close',
         style: Theme.of(context)
             .textTheme
             .labelLarge
