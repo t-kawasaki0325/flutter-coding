@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 
-class GreenScreen extends StatefulWidget {
-  const GreenScreen({super.key});
-
-  @override
-  State<GreenScreen> createState() => _GreenScreen();
-}
-
-class _GreenScreen extends State<GreenScreen> {
+class GreenScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
