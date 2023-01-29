@@ -10,7 +10,7 @@ mixin AfterLayoutMixin<T extends StatefulWidget> on State<T> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const GreenScreen();
+            return GreenScreen();
           },
         ),
       );

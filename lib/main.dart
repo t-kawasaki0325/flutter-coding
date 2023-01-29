@@ -23,16 +23,14 @@ class WeatherForecastApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const WeatherForecast(title: 'Forecast'),
+        home: const WeatherForecast(),
       ),
     );
   }
 }
 
 class WeatherForecast extends StatefulWidget {
-  const WeatherForecast({super.key, required this.title});
-
-  final String title;
+  const WeatherForecast({super.key});
 
   @override
   State<WeatherForecast> createState() => _WeatherForecastState();
@@ -60,7 +58,7 @@ class _WeatherForecastState extends State<WeatherForecast>
                   margin: const EdgeInsets.only(top: 80),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [const ExitButton(), const ReloadButton()],
+                    children: [ExitButton(), ReloadButton()],
                   ),
                 ),
               ),

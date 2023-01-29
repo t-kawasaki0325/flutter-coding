@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_training/main.dart';
-import 'package:flutter_training/weather.dart';
 
 class MainWidget extends StatelessWidget {
-  const MainWidget({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, child) {
